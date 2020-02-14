@@ -35,28 +35,7 @@
 using namespace tf2_ros;
 
 
-TransformListener::TransformListener(tf2::BufferCore& buffer, bool spin_thread):
-  dedicated_listener_thread_(NULL), buffer_(buffer), using_dedicated_thread_(false)
-{
-  if (spin_thread)
-    initWithThread();
-  else
-    init();
-}
-
-TransformListener::TransformListener(tf2::BufferCore& buffer, const ros::NodeHandle& nh, bool spin_thread)
-: dedicated_listener_thread_(NULL)
-, node_(nh)
-, buffer_(buffer)
-, using_dedicated_thread_(false)
-{
-  if (spin_thread)
-    initWithThread();
-  else
-    init();
-}
-
-TransformListener::TransformListener(tf2::BufferCore& buffer, ros::TransportHints transport_hints, bool spin_thread):
+TransformListener::TransformListener(tf2::BufferCore& buffer, bool spin_thread, ros::TransportHints transport_hints):
   dedicated_listener_thread_(NULL), buffer_(buffer), using_dedicated_thread_(false), transport_hints_(transport_hints)
 {
   if (spin_thread)
@@ -65,7 +44,7 @@ TransformListener::TransformListener(tf2::BufferCore& buffer, ros::TransportHint
     init();
 }
 
-TransformListener::TransformListener(tf2::BufferCore& buffer, const ros::NodeHandle& nh, ros::TransportHints transport_hints, bool spin_thread)
+TransformListener::TransformListener(tf2::BufferCore& buffer, const ros::NodeHandle& nh, bool spin_thread, ros::TransportHints transport_hints)
 : dedicated_listener_thread_(NULL)
 , node_(nh)
 , buffer_(buffer)
