@@ -44,7 +44,8 @@ TransformListener::TransformListener(tf2::BufferCore& buffer, bool spin_thread, 
     init();
 }
 
-TransformListener::TransformListener(tf2::BufferCore& buffer, const ros::NodeHandle& nh, bool spin_thread, ros::TransportHints transport_hints)
+TransformListener::TransformListener(tf2::BufferCore& buffer, const ros::NodeHandle& nh, bool spin_thread,
+    ros::TransportHints transport_hints)
 : dedicated_listener_thread_(NULL)
 , node_(nh)
 , buffer_(buffer)
